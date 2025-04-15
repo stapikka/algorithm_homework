@@ -33,20 +33,24 @@ void append_to_dynamic_array(int*& arr, int& logical_size, int& actual_size, int
 }
 
 void remove_dynamic_array_head(int*& arr, int& logical_size, int& actual_size) {
+
     if(logical_size == 0) {
         std::cout << "Ваш массив уже равен 0!";
         return;
     }
     logical_size--;
+
     if(logical_size > actual_size / 3) {
-        for(int i = 0; i < logical_size - 1; ++i) {
+        for(int i = 0; i < logical_size; ++i) {
             arr[i] = arr[i + 1];
         }
         return;
     }
+
     int new_actual_size = actual_size / 3;
     if(new_actual_size < 1) new_actual_size = 1;
     int* newArr = new int[new_actual_size];
+
     for(int i = 0; i < logical_size - 1; ++i) {
         newArr[i] = arr[i + 1];
     }
@@ -99,6 +103,7 @@ int main(){
         int choise{};
         std::cin >> choise;
         if(choise == 1){
+            // print_dynamic_array(dynarr, logical_size, actual_size);
             remove_dynamic_array_head(dynarr, logical_size, actual_size);
             print_dynamic_array(dynarr, logical_size, actual_size);
         } else {
